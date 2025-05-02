@@ -15,7 +15,7 @@ export default function Dashboard() {
       return await res.json()
     },
     staleTime: 0,
-    cacheTime: 0,
+    //cacheTime: 0,
     refetchOnWindowFocus: false,
   })
 

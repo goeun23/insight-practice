@@ -13,7 +13,8 @@
     "next": "latest",
     "react": "latest",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "web-vitals": "^4.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.5",
