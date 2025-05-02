@@ -1,25 +1,33 @@
-# InsightHub
+## ✅ InsightHub 최적화 과제 리스트 (단계별 실전용)
 
-실시간 데이터 기반 대시보드 프로젝트로, 성능 병목 지점을 포함한 초기 상태에서 시작하여
-점진적으로 React, Next.js, Tailwind CSS, React Query 기반 퍼포먼스를 개선하는 실전 과제 프로젝트입니다.
+### 🧱 1단계: 초기 렌더링 최적화
+- [ ] `Chart.tsx`에 `React.memo` 적용 → 불필요한 재렌더 방지
+- [ ] `DataList.tsx`를 `react-window` 또는 `react-virtualized`로 변경 → 긴 리스트 가상 스크롤 처리
+- [ ] `Chart.tsx`, `DataList.tsx` 내부에서 `useMemo` / `useCallback` 적용
 
-## 스택
-- Next.js
-- React Query
-- Chart.js
-- Tailwind CSS
-- TypeScript
+### 🔌 2단계: API 호출 & 상태 최적화 (React Query)
+- [ ] `staleTime`, `cacheTime` 조정해 불필요한 refetch 막기
+- [ ] `select`, `placeholderData`, `initialData` 등으로 UX 최적화
+- [ ] `suspense` + `fallback`으로 로딩 UX 개선
 
-## 실행 방법
+### 🔍 3단계: 렌더링 추적 및 측정
+- [ ] `Lighthouse`로 TTI, CLS, LCP 측정 → 개선 전/후 비교
+- [ ] `React DevTools Profiler`로 렌더링 횟수 추적
+- [ ] `web-vitals` 수집하여 console에서 로그 추적
 
-```bash
-npm install
-npm run dev
-```
+### 📦 4단계: 번들 사이즈 최적화
+- [ ] `@next/bundle-analyzer` 설치 → 어떤 모듈이 무거운지 시각화
+- [ ] `dynamic import + ssr: false` 설정된 컴포넌트 분리
+- [ ] 불필요한 라이브러리 제거 → `chart`, `date`, `lodash` 등
 
-## 최적화 과제 예시
-- [ ] React.memo / useMemo 적용
-- [ ] 가상 스크롤 적용 (react-window)
-- [ ] React Query staleTime, placeholderData 적용
-- [ ] bundle analyzer / Lighthouse 점수 개선
-- [ ] SSR vs CSR 비교 테스트
+### 🚀 5단계: 배포/환경 최적화
+- [ ] `Vercel` 환경에 올려서 build size, cold start 체크
+- [ ] `production build` + `performance 모드`로 실행해 차이 분석
+
+---
+
+### 📘 커밋 예시
+- `feat: apply React.memo to Chart component`
+- `perf: use react-window for DataList to reduce DOM nodes`
+- `refactor: cache API result using React Query staleTime`
+- `chore: add Lighthouse report for before optimization`
