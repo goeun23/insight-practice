@@ -19,8 +19,8 @@ ChartJS.register(
   Tooltip,
   Legend
 )
-
-export default function Chart({ data }) {
+import React from 'react'
+const Chart = ({data}) => {
   const chartData = {
     labels: data.map((_, idx) => idx),
     datasets: [
@@ -35,3 +35,6 @@ export default function Chart({ data }) {
 
   return <Line data={chartData} />
 }
+
+export default React.memo(Chart)
+
