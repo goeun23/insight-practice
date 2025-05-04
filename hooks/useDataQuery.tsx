@@ -17,13 +17,17 @@ export default function useDataQuery() {
     queryKey: ['insightData'],
     queryFn: fetchData,
     staleTime: 1000 * 60 * 5, // 5분 동안 fresh
-    cacheTime: 1000 * 60 * 10, // 10분간 메모리 유지
+    gcTime: 1000 * 60 * 10, // 10분간 메모리 유지
     placeholderData:()=> {
+      if(typeof window !== 'undefined'){
         const cache = localStorage.getItem('insightDataCache')
         return cache ? JSON.parse(cache) : []
+      }
     },
+
     
   })
+  const safeData = data || []
 
-  return {data}
+  return { data: safeData, isLoading, isFetching }
 }
