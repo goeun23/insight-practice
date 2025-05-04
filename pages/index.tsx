@@ -1,20 +1,15 @@
 import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+
 import useDataQuery from '@/hooks/useDataQuery'
+
 const Chart = dynamic(() => import('@/components/Chart'), { ssr: false })
 const DataList = dynamic(() => import('@/components/DataList'), { ssr: false })
 
-export default function Dashboard() {
-  const [loading, setLoading] = useState(true)
-  const {data, isLoading} = useDataQuery()
+function DashboardContent(){
+  const {data} = useDataQuery()
 
-  useEffect(()=> {
-    const timer = setTimeout(()=> setLoading(false), 500)
-    return ()=> clearTimeout(timer)
-  }, [])
-
-  if(loading || isLoading) return <p>로딩중...</p>
   return (
     <div className="p-6">
       <h1 className="text-xl font-bold mb-4">📊 InsightHub 대시보드</h1>
@@ -23,5 +18,13 @@ export default function Dashboard() {
         <DataList data={data} />
       </div>
     </div>
+  )
+}
+
+export default function Dashboard(){
+  return (
+    <Suspense fallback={<p className="p-6">로딩 중...</p>}>
+      <DashboardContent />
+    </Suspense>
   )
 }
