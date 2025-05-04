@@ -19,9 +19,10 @@ ChartJS.register(
   Tooltip,
   Legend
 )
-import React from 'react'
+import React, { useMemo } from 'react'
+
 const Chart = ({data}) => {
-  const chartData = {
+  const chartData = useMemo(()=> ({
     labels: data.map((_, idx) => idx),
     datasets: [
       {
@@ -31,8 +32,7 @@ const Chart = ({data}) => {
         tension: 0.1,
       },
     ],
-  }
-
+  }), [data])
   return <Line data={chartData} />
 }
 
